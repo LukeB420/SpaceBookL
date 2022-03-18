@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList} from 'react-native';
 import 'react-native-gesture-handler'
 import 'react-native-reanimated'
+
 
 
 class HomePg extends Component{
@@ -11,74 +12,67 @@ class HomePg extends Component{
     super(props);
 
     this.state = {
-        first_name: "",
-        last_name: ""
+        isLoading: true,
+        dataSource: []
     }
 }
 
-friends = async () => {
+componentDidMount() {
 
     //Validation here...
 
-    return fetch("http://10.0.2.2:3333/api/1.0.0/user/14", {
-        method: 'get',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        // body: JSON.stringify(this.state)
+    fetch("http://10.0.2.2:3333/api/1.0.0/user/12")
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        isLoading: false,
+        dataSource: responseJson
+      
     })
-    .then((response) => {
-        if(response.status === 200){
-          this.setState({first_name: responseJson.first_name})
-        }else if(response.status === 400){
-            throw 'Unable to retrieve profile';
-        }else{
-            throw 'Something went wrong';
-        }
-    })
-    .then(async (responseJson) => {
-            console.log(responseJson);
-            await AsyncStorage.setItem('@session_token', responseJson.token);
-            // this.props.navigation.navigate("Home");
-    })
-    .catch((error) => {
-        console.log(error);
-    })
+  })
 }
 
+_renderItem = ({item, index}) => {
+  return (
+    <View style={styles.item}>
+      <Text>{item.first_name}</Text>
+    </View>
+  )
+}
 
     render() {
+      let {container} = styles
+      let {dataSource, isLoading} = this.state
     return (
-  
-      <View style={styles.container}>
-        <StatusBar backgroundColor='#1e90ff'/>
-        <TouchableOpacity style={styles.square}
-        onPress={() => this.props.navigation.navigate("Profile")}>  
-          <Text style={styles.txt}>My profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.square}
-        onPress={() => this.friends()}>  
-          <Text style={styles.txt}>{this.state.first_name}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.square}
-        onPress={() => this.props.navigation.navigate("Friend")}>  
-          <Text style={styles.txt}>Friend 2</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.square}
-        onPress={() => this.props.navigation.navigate("Friend")}>  
-          <Text style={styles.txt}>Friend 3</Text>
-        </TouchableOpacity>
+      
+    <View style={container}>
+      <FlatList
+      data={dataSource}
+      renderItem={this._renderItem}
+      keyExtractor={(item,index) => index.toString()}
+      />
+    </View>
+      
+      
+
+
         
-      </View>
-    );
+      
+    )
   }
 }
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#1e90ff',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    item: {
+      padding: 5,
+      borderBottomWidth: 1,
+      borderBottomColor: '#eee'
     },
     input: {
       fontSize: 10,
