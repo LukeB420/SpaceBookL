@@ -1,0 +1,46 @@
+{
+  "name": "Spacebook-API",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": "",
+  "scripts": {
+    "start": "expo start",
+    "dev": "nodemon server.js",
+    "test": "mocha ./tests/test.*.js --reporter spec --log-level=warn --timeout 10000 --python=python2.7",
+    "ci": "start-server-and-test start http://localhost:3333/api/1.0.0/ test"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/native": "^6.0.8",
+    "bunyan": "^1.8.12",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "convict": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "email-validator": "^2.0.4",
+    "esm": "^3.2.25",
+    "expo": "^44.0.6",
+    "expo-status-bar": "^1.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mocha": "^8.1.3",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.17.1",
+    "react-native": "^0.64.3",
+    "react-native-gesture-handler": "~2.1.0",
+    "react-native-reanimated": "^2.4.1",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "~3.10.1",
+    "react-navigation": "^4.4.4",
+    "react-navigation-drawer": "^2.7.2",
+    "react-navigation-stack": "^2.10.4",
+    "swagger-parameters": "^1.3.2",
+    "z-schema": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "start-server-and-test": "^1.12.0"
+  }
+}
