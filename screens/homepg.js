@@ -1,9 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
-import StyleSheetValidation from 'react-native/Libraries/StyleSheet/StyleSheetValidation';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import 'react-native-gesture-handler'
 import 'react-native-reanimated'
 
@@ -83,12 +80,6 @@ friends = async () => {
       alignItems: 'center',
       justifyContent: 'center',
     },
-    welcome: {
-      fontFamily: "serif",
-      fontSize: 30,
-      color: "#fff",
-      marginBottom: 250
-    },
     input: {
       fontSize: 10,
       color: "#000",
@@ -96,17 +87,6 @@ friends = async () => {
       backgroundColor: '#fff',
       padding: 15,
       marginBottom: 10
-    },
-    btn: {
-      backgroundColor: '#FF0',
-      padding: 15,
-      width: "45%"
-    },
-    btnlay: {
-      textAlign: "center",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      width: "90%"
     },
     txt: {
       fontSize: 18,

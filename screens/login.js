@@ -1,9 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
-import StyleSheetValidation from 'react-native/Libraries/StyleSheet/StyleSheetValidation';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'react-native-gesture-handler'
 import 'react-native-reanimated'
